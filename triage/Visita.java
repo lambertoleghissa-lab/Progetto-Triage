@@ -2,12 +2,12 @@ package triage;
 
 public abstract class Visita {
 
-// attributi d'istanza
+    // attributi d'istanza
     protected String data;
     protected String medico;
     protected String diagnosi;
 
-// costruttore
+    // costruttore
     public Visita(String dat, String med, String dia) {
 
         data = dat;
@@ -16,7 +16,7 @@ public abstract class Visita {
 
     }
 
-// getter
+    // getter
     public String getData() {
         return data;
     }
