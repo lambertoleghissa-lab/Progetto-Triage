@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MainTriage {
 
-// Scanner al di fuori del main per utilizzarlo in tutti i metodi della classe
+    // Scanner al di fuori del main per utilizzarlo in tutti i metodi della classe
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -104,7 +104,9 @@ public class MainTriage {
         while (!cond1) {
             System.out.println("Inserire data in formato gg/mm/aaaa: ");
             dat = sc.nextLine().trim().toUpperCase();
-            if (dat.length() == 10 && (dat.substring(0, 2).matches("\\d++")) && (dat.charAt(2) == '/') && (dat.substring(3, 5).matches("\\d++")) && (dat.charAt(5) == '/') && (dat.substring(6, 10).matches("\\d++"))) {
+            if (dat.length() == 10 && (dat.substring(0, 2).matches("\\d++")) && (dat.charAt(2) == '/')
+                    && (dat.substring(3, 5).matches("\\d++")) && (dat.charAt(5) == '/')
+                    && (dat.substring(6, 10).matches("\\d++"))) {
                 cond1 = true;
             } else {
                 System.err.println("⚠️ Errore di inserimento, inserire data in formato gg/mm/aaaa! ");
@@ -139,7 +141,7 @@ public class MainTriage {
             }
         }
 
-        // Switch per gli attributi specifici della visita scelta 
+        // Switch per gli attributi specifici della visita scelta
         switch (sceltaVisita) {
             case "1":
                 // Controllo e inserimento reparto (generica)
@@ -161,22 +163,29 @@ public class MainTriage {
                 break;
 
             case "2":
-                // Controllo e inserimento parteCorpo (ortopedica)
-                boolean cond5 = false;
-                while (!cond5) {
-                    System.out.println("Inserire la zona del corpo interessata:");
-                    parteCorpo = sc.nextLine().trim();
-                    parteCorpo = parteCorpo.substring(0, 1).toUpperCase() + parteCorpo.substring(1);
-
-                    if (parteCorpo.length() < 50 && parteCorpo.length() > 0) {
-                        cond5 = true;
-                    } else {
-                        System.err.println("⚠️ Errore di inserimento, Errore di inserimento, lunghezza testo non valida");
-                    }
-                }
-
-                // Creazione visita specifica
-                visita = new VisitaOrtopedica(parteCorpo, dat, med, dia);
+                VisitaOrtopedicaFactory visitaOrtoFactory = new VisitaOrtopedicaFactory();
+                visita = visitaOrtoFactory.creareVisita();
+                /*
+                 * // Controllo e inserimento parteCorpo (ortopedica)
+                 * boolean cond5 = false;
+                 * while (!cond5) {
+                 * System.out.println("Inserire la zona del corpo interessata:");
+                 * parteCorpo = sc.nextLine().trim();
+                 * parteCorpo = parteCorpo.substring(0, 1).toUpperCase() +
+                 * parteCorpo.substring(1);
+                 * 
+                 * if (parteCorpo.length() < 50 && parteCorpo.length() > 0) {
+                 * cond5 = true;
+                 * } else {
+                 * System.err.
+                 * println("⚠️ Errore di inserimento, Errore di inserimento, lunghezza testo non valida"
+                 * );
+                 * }
+                 * }
+                 * 
+                 * // Creazione visita specifica
+                 * visita = new VisitaOrtopedica(parteCorpo, dat, med, dia);
+                 */
                 break;
 
             case "3":
@@ -185,7 +194,8 @@ public class MainTriage {
                 while (!cond6) {
                     System.out.println("Inserire la frequenza cardiaca registrata:");
                     frequenzaCard = sc.nextLine().trim();
-                    if (frequenzaCard.length() > 0 && (frequenzaCard.length() <= 3) && (frequenzaCard.matches("\\d++"))) {
+                    if (frequenzaCard.length() > 0 && (frequenzaCard.length() <= 3)
+                            && (frequenzaCard.matches("\\d++"))) {
                         cond6 = true;
                     } else {
                         System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
@@ -196,7 +206,8 @@ public class MainTriage {
                 while (!cond7) {
                     System.out.println("Inserire la pressione sistolica registrata:");
                     pressioneSist = sc.nextLine().trim();
-                    if (pressioneSist.length() > 0 && (pressioneSist.length() <= 3) && (pressioneSist.matches("\\d++"))) {
+                    if (pressioneSist.length() > 0 && (pressioneSist.length() <= 3)
+                            && (pressioneSist.matches("\\d++"))) {
                         cond7 = true;
                     } else {
                         System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
@@ -208,7 +219,8 @@ public class MainTriage {
                 while (!cond8) {
                     System.out.println("Inserire la pressione diastolica registrata:");
                     pressioneDiast = sc.nextLine().trim();
-                    if (pressioneDiast.length() > 0 && (pressioneDiast.length() <= 3) && (pressioneDiast.matches("\\d++"))) {
+                    if (pressioneDiast.length() > 0 && (pressioneDiast.length() <= 3)
+                            && (pressioneDiast.matches("\\d++"))) {
                         cond8 = true;
                     } else {
                         System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
@@ -297,7 +309,8 @@ public class MainTriage {
         while (!cond4) {
             System.out.println("Inserire codice colore triage: ");
             col = sc.nextLine().trim().toUpperCase();
-            if (col.equalsIgnoreCase("rosso") || col.equalsIgnoreCase("giallo") || col.equalsIgnoreCase("verde") || col.equalsIgnoreCase("bianco")) {
+            if (col.equalsIgnoreCase("rosso") || col.equalsIgnoreCase("giallo") || col.equalsIgnoreCase("verde")
+                    || col.equalsIgnoreCase("bianco")) {
                 cond4 = true;
             } else {
                 System.err.println("⚠️ Errore di inserimento, inserire codice colore valido! ");
