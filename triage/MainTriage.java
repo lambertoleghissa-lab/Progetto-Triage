@@ -147,118 +147,21 @@ public class MainTriage {
                 VisitaGenericaFactory visitaGenFactory = new VisitaGenericaFactory();
                 visita = visitaGenFactory.creareVisita();
 
-                // Controllo e inserimento reparto (generica)
-                /*
-                 * boolean cond4 = false;
-                 * while (!cond4) {
-                 * System.out.println("Inserire il reparto:");
-                 * rep = sc.nextLine().trim();
-                 * rep = rep.substring(0, 1).toUpperCase() + rep.substring(1);
-                 * 
-                 * if (rep.length() < 50 && rep.length() > 0) {
-                 * cond4 = true;
-                 * } else {
-                 * System.err.println("⚠️ Errore di inserimento, reparto non valido");
-                 * }
-                 * }
-                 * 
-                 * // Creazione visita specifica
-                 * visita = new VisitaGenerica(rep, dat, med, dia);
-                 */
                 break;
 
             case "2":
-                // Controllo e inserimento parteCorpo (ortopedica)
-                /*
-                 * boolean cond5 = false;
-                 * while (!cond5) {
-                 * System.out.println("Inserire la zona del corpo interessata:");
-                 * parteCorpo = sc.nextLine().trim();
-                 * parteCorpo = parteCorpo.substring(0, 1).toUpperCase() +
-                 * parteCorpo.substring(1);
-                 * 
-                 * if (parteCorpo.length() < 50 && parteCorpo.length() > 0) {
-                 * cond5 = true;
-                 * } else {
-                 * System.err
-                 * .println("⚠️ Errore di inserimento, Errore di inserimento, lunghezza testo non valida"
-                 * );
-                 * }
-                 * }
-                 */
+
                 // Creazione visita specifica
                 visita = new VisitaOrtopedica(parteCorpo, dat, med, dia);
                 VisitaOrtopedicaFactory visitaOrtoFactory = new VisitaOrtopedicaFactory();
                 visita = visitaOrtoFactory.creareVisita();
-                /*
-                 * // Controllo e inserimento parteCorpo (ortopedica)
-                 * boolean cond5 = false;
-                 * while (!cond5) {
-                 * System.out.println("Inserire la zona del corpo interessata:");
-                 * parteCorpo = sc.nextLine().trim();
-                 * parteCorpo = parteCorpo.substring(0, 1).toUpperCase() +
-                 * parteCorpo.substring(1);
-                 * 
-                 * if (parteCorpo.length() < 50 && parteCorpo.length() > 0) {
-                 * cond5 = true;
-                 * } else {
-                 * System.err.
-                 * println("⚠️ Errore di inserimento, Errore di inserimento, lunghezza testo non valida"
-                 * );
-                 * }
-                 * }
-                 * 
-                 * // Creazione visita specifica
-                 * visita = new VisitaOrtopedica(parteCorpo, dat, med, dia);
-                 */
+
                 break;
 
             case "3":
                 VisitaCardiologicaFactory visitaCardioFactory = new VisitaCardiologicaFactory();
                 visita = visitaCardioFactory.creareVisita();
-                /*
-                 * // Controllo e inserimento frequenzaCard (cardiologica)
-                 * boolean cond6 = false;
-                 * while (!cond6) {
-                 * System.out.println("Inserire la frequenza cardiaca registrata:");
-                 * frequenzaCard = sc.nextLine().trim();
-                 * if (frequenzaCard.length() > 0 && (frequenzaCard.length() <= 3)
-                 * && (frequenzaCard.matches("\\d++"))) {
-                 * cond6 = true;
-                 * } else {
-                 * System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
-                 * }
-                 * }
-                 * // Controllo pressioneSist
-                 * boolean cond7 = false;
-                 * while (!cond7) {
-                 * System.out.println("Inserire la pressione sistolica registrata:");
-                 * pressioneSist = sc.nextLine().trim();
-                 * if (pressioneSist.length() > 0 && (pressioneSist.length() <= 3)
-                 * && (pressioneSist.matches("\\d++"))) {
-                 * cond7 = true;
-                 * } else {
-                 * System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
-                 * }
-                 * }
-                 * 
-                 * // Controllo pressioneDiast
-                 * boolean cond8 = false;
-                 * while (!cond8) {
-                 * System.out.println("Inserire la pressione diastolica registrata:");
-                 * pressioneDiast = sc.nextLine().trim();
-                 * if (pressioneDiast.length() > 0 && (pressioneDiast.length() <= 3)
-                 * && (pressioneDiast.matches("\\d++"))) {
-                 * cond8 = true;
-                 * } else {
-                 * System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
-                 * }
-                 * }
-                 * 
-                 * // Creazione visita specifica
-                 * visita = new VisitaCardiologica(frequenzaCard, pressioneSist, pressioneDiast,
-                 * dat, med, dia);
-                 */
+
         }
         return visita;
     }
