@@ -1,4 +1,4 @@
-package triage;
+package triage.triage;
 
 import java.util.Scanner;
 
@@ -75,8 +75,6 @@ public class MainTriage {
                 // tutti gli altri casi
                 default:
                     System.out.println("⚠️ Errore, inserire opzione valida");
-
-                    sc.close();
             }
         }
     }
@@ -88,15 +86,10 @@ public class MainTriage {
 
         // Variabili iniziali assegnate a null
         Visita visita = null;
-        String tipoVisita = null;
         String dat = null;
         String med = null;
         String dia = null;
         String rep = null;
-        String parteCorpo = null;
-        String frequenzaCard = null;
-        String pressioneSist = null;
-        String pressioneDiast = null;
 
         // Controlli generici
         // Controllo data
@@ -104,9 +97,9 @@ public class MainTriage {
         while (!cond1) {
             System.out.println("Inserire data in formato gg/mm/aaaa: ");
             dat = sc.nextLine().trim().toUpperCase();
-            if (dat.length() == 10 && (dat.substring(0, 2).matches("\\d++")) && (dat.charAt(2) == '/')
-                    && (dat.substring(3, 5).matches("\\d++")) && (dat.charAt(5) == '/')
-                    && (dat.substring(6, 10).matches("\\d++"))) {
+            if (dat.length() == 10 && (dat.substring(0, 2).matches("\\d+")) && (dat.charAt(2) == '/')
+                    && (dat.substring(3, 5).matches("\\d+")) && (dat.charAt(5) == '/')
+                    && (dat.substring(6, 10).matches("\\d+"))) {
                 cond1 = true;
             } else {
                 System.err.println("⚠️ Errore di inserimento, inserire data in formato gg/mm/aaaa! ");
@@ -118,9 +111,8 @@ public class MainTriage {
         while (!cond2) {
             System.out.println("Inserire il cognome del medico curante:");
             med = sc.nextLine().trim();
-            med = med.substring(0, 1).toUpperCase() + med.substring(1);
-
             if (med.length() < 50 && med.length() > 0) {
+                med = med.substring(0, 1).toUpperCase() + med.substring(1);
                 cond2 = true;
             } else {
                 System.err.println("⚠️ Errore di inserimento, lunghezza testo non valida");
@@ -132,116 +124,39 @@ public class MainTriage {
         while (!cond3) {
             System.out.println("Inserire la diagnosi:");
             dia = sc.nextLine().trim();
-            dia = dia.substring(0, 1).toUpperCase() + dia.substring(1);
-
             if (dia.length() < 50 && dia.length() > 0) {
+                dia = dia.substring(0, 1).toUpperCase() + dia.substring(1);
                 cond3 = true;
             } else {
                 System.err.println("⚠️ Errore di inserimento, lunghezza testo non valida");
             }
         }
 
-        // Switch per gli attributi specifici della visita scelta
+        // Switch spostato correttamente dentro registraVisita() dove le variabili
+        // ESISTONO
         switch (sceltaVisita) {
             case "1":
+                System.out.println("Inserire il reparto per la visita generica:");
+                rep = sc.nextLine().trim();
                 VisitaGenericaFactory visitaGenFactory = new VisitaGenericaFactory();
-                visita = visitaGenFactory.creareVisita();
-
+                visita = visitaGenFactory.creareVisita(rep, dat, med, dia);
                 break;
 
             case "2":
-                // Controllo e inserimento parteCorpo (ortopedica)
-                /*
-                 * boolean cond5 = false;
-                 * while (!cond5) {
-                 * System.out.println("Inserire la zona del corpo interessata:");
-                 * parteCorpo = sc.nextLine().trim();
-                 * parteCorpo = parteCorpo.substring(0, 1).toUpperCase() +
-                 * parteCorpo.substring(1);
-                 * 
-                 * if (parteCorpo.length() < 50 && parteCorpo.length() > 0) {
-                 * cond5 = true;
-                 * } else {
-                 * System.err
-                 * .println("⚠️ Errore di inserimento, Errore di inserimento, lunghezza testo non valida"
-                 * );
-                 * }
-                 * }
-                 */
-                // Creazione visita specifica
-                visita = new VisitaOrtopedica(parteCorpo, dat, med, dia);
                 VisitaOrtopedicaFactory visitaOrtoFactory = new VisitaOrtopedicaFactory();
-                visita = visitaOrtoFactory.creareVisita();
-                /*
-                 * // Controllo e inserimento parteCorpo (ortopedica)
-                 * boolean cond5 = false;
-                 * while (!cond5) {
-                 * System.out.println("Inserire la zona del corpo interessata:");
-                 * parteCorpo = sc.nextLine().trim();
-                 * parteCorpo = parteCorpo.substring(0, 1).toUpperCase() +
-                 * parteCorpo.substring(1);
-                 * 
-                 * if (parteCorpo.length() < 50 && parteCorpo.length() > 0) {
-                 * cond5 = true;
-                 * } else {
-                 * System.err.
-                 * println("⚠️ Errore di inserimento, Errore di inserimento, lunghezza testo non valida"
-                 * );
-                 * }
-                 * }
-                 * 
-                 * // Creazione visita specifica
-                 * visita = new VisitaOrtopedica(parteCorpo, dat, med, dia);
-                 */
+                visita = visitaOrtoFactory.creareVisita(dat, med, dia);
                 break;
 
             case "3":
                 VisitaCardiologicaFactory visitaCardioFactory = new VisitaCardiologicaFactory();
-                visita = visitaCardioFactory.creareVisita();
-                /*
-                 * // Controllo e inserimento frequenzaCard (cardiologica)
-                 * boolean cond6 = false;
-                 * while (!cond6) {
-                 * System.out.println("Inserire la frequenza cardiaca registrata:");
-                 * frequenzaCard = sc.nextLine().trim();
-                 * if (frequenzaCard.length() > 0 && (frequenzaCard.length() <= 3)
-                 * && (frequenzaCard.matches("\\d++"))) {
-                 * cond6 = true;
-                 * } else {
-                 * System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
-                 * }
-                 * }
-                 * // Controllo pressioneSist
-                 * boolean cond7 = false;
-                 * while (!cond7) {
-                 * System.out.println("Inserire la pressione sistolica registrata:");
-                 * pressioneSist = sc.nextLine().trim();
-                 * if (pressioneSist.length() > 0 && (pressioneSist.length() <= 3)
-                 * && (pressioneSist.matches("\\d++"))) {
-                 * cond7 = true;
-                 * } else {
-                 * System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
-                 * }
-                 * }
-                 * 
-                 * // Controllo pressioneDiast
-                 * boolean cond8 = false;
-                 * while (!cond8) {
-                 * System.out.println("Inserire la pressione diastolica registrata:");
-                 * pressioneDiast = sc.nextLine().trim();
-                 * if (pressioneDiast.length() > 0 && (pressioneDiast.length() <= 3)
-                 * && (pressioneDiast.matches("\\d++"))) {
-                 * cond8 = true;
-                 * } else {
-                 * System.err.println("⚠️ Errore di inserimento, inserire una cifra valida");
-                 * }
-                 * }
-                 * 
-                 * // Creazione visita specifica
-                 * visita = new VisitaCardiologica(frequenzaCard, pressioneSist, pressioneDiast,
-                 * dat, med, dia);
-                 */
+                visita = visitaCardioFactory.creareVisita(dat, med, dia);
+                break;
+
+            default:
+                System.out.println("⚠️ Scelta visita non valida.");
+                break;
         }
+
         return visita;
     }
 
@@ -273,14 +188,11 @@ public class MainTriage {
 
     // Metodo di controllo con cicli while per registrazione paziente
     private static Paziente registraPaziente() {
-
-        // Variabili iniziali assegnate a null
         String cF = null;
         String nom = null;
         String cogn = null;
         String col = null;
 
-        // Inserire CF
         boolean cond1 = false;
         while (!cond1) {
             System.out.println("Inserire Codice Fiscale: ");
@@ -292,7 +204,6 @@ public class MainTriage {
             }
         }
 
-        // Inserire nome
         boolean cond2 = false;
         while (!cond2) {
             System.out.println("Inserire nome: ");
@@ -304,7 +215,6 @@ public class MainTriage {
             }
         }
 
-        // Inserire cognome
         boolean cond3 = false;
         while (!cond3) {
             System.out.println("Inserire cognome: ");
@@ -316,23 +226,18 @@ public class MainTriage {
             }
         }
 
-        // Inserire colore triage
         boolean cond4 = false;
         while (!cond4) {
             System.out.println("Inserire codice colore triage: ");
             col = sc.nextLine().trim().toUpperCase();
-            if (col.equalsIgnoreCase("rosso") || col.equalsIgnoreCase("giallo") || col.equalsIgnoreCase("verde")
-                    || col.equalsIgnoreCase("bianco")) {
+            if (col.equalsIgnoreCase("ROSSO") || col.equalsIgnoreCase("GIALLO") || col.equalsIgnoreCase("VERDE")
+                    || col.equalsIgnoreCase("BIANCO")) {
                 cond4 = true;
             } else {
                 System.err.println("⚠️ Errore di inserimento, inserire codice colore valido! ");
             }
         }
 
-        // Creazione paziente
-        Paziente paz = new Paziente(cF, nom, cogn, col);
-
-        return paz;
+        return new Paziente(cF, nom, cogn, col);
     }
-
 }

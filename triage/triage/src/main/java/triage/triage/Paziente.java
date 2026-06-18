@@ -1,8 +1,8 @@
-package triage;
+package triage.triage;
 
 public class Paziente {
 
-    //attributi d'istanza
+    // attributi d'istanza
     private String codiceFiscale;
     private String nome;
     private String cognome;
@@ -25,7 +25,8 @@ public class Paziente {
             cognome = cogn;
         }
 
-        if (col.equalsIgnoreCase("rosso") || col.equalsIgnoreCase("giallo") || col.equalsIgnoreCase("verde") || col.equalsIgnoreCase("bianco")) {
+        if (col.equalsIgnoreCase("rosso") || col.equalsIgnoreCase("giallo") || col.equalsIgnoreCase("verde")
+                || col.equalsIgnoreCase("bianco")) {
             coloreTriage = col;
         }
 
@@ -50,7 +51,7 @@ public class Paziente {
         return visita;
     }
 
-    //setter
+    // setter
     public void setVisita(Visita v) {
         visita = v;
     }
@@ -74,13 +75,14 @@ public class Paziente {
     }
 
     public void setColoreTriage(String col) {
-        if (col.equalsIgnoreCase("rosso") || col.equalsIgnoreCase("giallo") || col.equalsIgnoreCase("verde") || col.equalsIgnoreCase("bianco")) {
+        if (col.equalsIgnoreCase("rosso") || col.equalsIgnoreCase("giallo") || col.equalsIgnoreCase("verde")
+                || col.equalsIgnoreCase("bianco")) {
             coloreTriage = col;
         }
 
     }
 
-    // metodo calcola priorità 
+    // metodo calcola priorità
     public String calcolaPriorita() {
         if (visita == null) {
             return "\u001B[1mNON VISITATO\u001B[0m";

@@ -1,21 +1,22 @@
-package triage;
+package triage.triage;
 
 public class VisitaCardiologica extends Visita {
 
-// attributi
+    // attributi
     private String frequenzaCardiaca;
     private String pressioneSist;
     private String pressioneDiast;
 
-// costruttore
-    public VisitaCardiologica(String frequenzaCard, String pressioneSis, String pressioneDias, String dat, String med, String dia) {
+    // costruttore
+    public VisitaCardiologica(String frequenzaCard, String pressioneSis, String pressioneDias, String dat, String med,
+            String dia) {
         super(dat, med, dia);
         frequenzaCardiaca = frequenzaCard;
         pressioneSist = pressioneSis;
         pressioneDiast = pressioneDias;
     }
 
-// getter
+    // getter
     public String getFrequenzaCardiaca() {
         return frequenzaCardiaca;
     }
@@ -28,12 +29,12 @@ public class VisitaCardiologica extends Visita {
         return pressioneDiast;
     }
 
-// Metodo descriviTitoloVisita()
+    // Metodo descriviTitoloVisita()
     @Override
     public String descriviTitoloVisita() {
         return "VISITA CARDIOLOGICA";
     }
-// metodo descrivi visita
+    // metodo descrivi visita
 
     @Override
     public String descriviVisita() {

@@ -1,28 +1,28 @@
-package triage;
+package triage.triage;
 
 public class VisitaOrtopedica extends Visita {
-// attributi
+    // attributi
 
     private String parteCorpo;
 
-// costruttore
+    // costruttore
     public VisitaOrtopedica(String parteCor, String dat, String med, String dia) {
         super(dat, med, dia);
         parteCorpo = parteCor;
     }
 
-// getter
+    // getter
     public String getParteCorpo() {
         return parteCorpo;
     }
 
-// Metodo descriviTitoloVisita()
+    // Metodo descriviTitoloVisita()
     @Override
     public String descriviTitoloVisita() {
         return "VISITA ORTOPEDICA";
     }
 
-// metodo descriviVisita()
+    // metodo descriviVisita()
     @Override
     public String descriviVisita() {
         String descrizione = " Zona interessata:   " + parteCorpo;

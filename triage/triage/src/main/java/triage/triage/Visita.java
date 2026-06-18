@@ -1,4 +1,4 @@
-package triage;
+package triage.triage;
 
 public abstract class Visita {
 
